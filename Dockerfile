@@ -4,7 +4,6 @@ LABEL maintainer="Jeff Geerling"
 # Install dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       python-software-properties \
        python-setuptools \
        python-pip \
        software-properties-common \
