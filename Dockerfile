@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 LABEL maintainer="Jeff Geerling"
 
-ENV pip_packages "ansible"
+ENV pip_packages "ansible yamllint ansible-lint flake8 testinfra molecule"
 
 # Install dependencies.
 RUN apt-get update \
