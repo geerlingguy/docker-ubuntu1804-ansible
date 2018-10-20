@@ -1,6 +1,8 @@
 FROM ubuntu:18.04
 LABEL maintainer="Jeff Geerling"
 
+ENV pip_packages "ansible"
+
 # Install dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -12,19 +14,9 @@ RUN apt-get update \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
 RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
-#ADD etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
 # Install Ansible via Pip.
-RUN pip install ansible
-
-# TODO: Once Ansible adds Bionic to it's PPA, switch back to package install.
-# RUN add-apt-repository -y ppa:ansible/ansible \
-#   && apt-get update \
-#   && apt-get install -y --no-install-recommends \
-#      ansible \
-#   && rm -rf /var/lib/apt/lists/* \
-#   && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
-#   && apt-get clean
+RUN pip install $pip_packages
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
