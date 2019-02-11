@@ -6,12 +6,18 @@ before_install:
   - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
+env:
+  ANSIBLE_USER: ansible
+
 script:
   # Test building Dockerfile.
   - docker build -t docker-ansible .
 
   # Test running the container.
   - docker run --name test-container -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro docker-ansible
+
+  # Verify that `ansible` user exists and is a sudoer
+  - docker exec --tty test-container env TERM=xterm sudo -u ${ANSIBLE_USER} sudo -v
 
   # Verify Ansible is available in the container.
   - docker exec --tty test-container env TERM=xterm ansible --version

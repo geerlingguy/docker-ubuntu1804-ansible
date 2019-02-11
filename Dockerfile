@@ -26,5 +26,13 @@ RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin
 RUN mkdir -p /etc/ansible
 RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
 
+# Create `ansible` user with sudo permissions
+ENV ANSIBLE_USER=ansible SUDO_GROUP=sudo
+RUN set -xe \
+  && groupadd -r ${ANSIBLE_USER} \
+  && useradd -m -g ${ANSIBLE_USER} ${ANSIBLE_USER} \
+  && usermod -aG ${SUDO_GROUP} ${ANSIBLE_USER} \
+  && sed -i "/^%${SUDO_GROUP}/s/ALL\$/NOPASSWD:ALL/g" /etc/sudoers
+
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 CMD ["/lib/systemd/systemd"]
