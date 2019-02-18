@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-LABEL maintainer="Jeff Geerling"
+LABEL maintainer="Scott Perkins"
 
 ENV pip_packages "ansible"
 
