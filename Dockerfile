@@ -8,7 +8,9 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        apt-utils \
        python-setuptools \
+       python3.6 \
        python-pip \
+       python3-pip \
        software-properties-common \
        rsyslog systemd systemd-cron sudo net-tools \
     && rm -Rf /var/lib/apt/lists/* \
