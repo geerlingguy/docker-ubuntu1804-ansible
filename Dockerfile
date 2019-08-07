@@ -7,6 +7,7 @@ ENV pip_packages "ansible"
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        apt-utils \
+       locales \
        python-setuptools \
        python-pip \
        software-properties-common \
@@ -15,6 +16,9 @@ RUN apt-get update \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
 RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
+
+# Fix potential UTF-8 errors with ansible-test.
+RUN locale-gen en_US.UTF-8
 
 # Install Ansible via Pip.
 RUN pip install $pip_packages
