@@ -1,6 +1,6 @@
 # Ubuntu 18.04 LTS (Bionic) Ansible Test Image
 
-[![Docker Automated build](https://img.shields.io/docker/automated/maddog2050/docker-ubuntu1804-ansible.svg?maxAge=2592000)](https://hub.docker.com/r/maddog2050/docker-ubuntu1804-ansible/)
+[![Docker Automated build](https://img.shields.io/docker/cloud/automated/maddog2050/docker-ubuntu1804-ansible.svg?maxAge=2592000)](https://hub.docker.com/r/maddog2050/docker-ubuntu1804-ansible/)
 
 Ubuntu 18.04 LTS (Bionic) Docker container for Ansible playbook and role testing.
 
