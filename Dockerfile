@@ -31,14 +31,14 @@ RUN chmod 0644 ${ca_cert_location}/${ca_cert_file} \
 
 # Upgrade Python dependencies packages
 copy --chown=0:0 ./python-dependencies/requirements.txt ./python-dependencies/requirements.txt
-RUN pip3 install --cert=${ca_bundle} --upgrade --requirement ./python-dependencies/requirements.txt
+RUN cat ./python-dependencies/requirements.txt && pip3 install --cert=${ca_bundle} --upgrade --requirement ./python-dependencies/requirements.txt
 
 # Set pip to use system ca-bundle
 RUN pip3 config set global.cert ${ca_bundle}
 
 # Install Ansible via Pip.
 copy --chown=0:0 ./python/requirements.txt ./python/requirements.txt
-RUN pip3 install --requirement ./python/requirements.txt
+RUN cat ./python/requirements.txt && pip3 install --requirement ./python/requirements.txt
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
