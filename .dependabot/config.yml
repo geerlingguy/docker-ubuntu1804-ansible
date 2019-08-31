@@ -1,0 +1,14 @@
+version: 1
+
+update_configs:
+  - package_manager: "docker"
+    directory: "/"
+    update_schedule: "weekly"
+
+  - package_magager: "python"
+    directory: "/python-dependencies"
+    update_schedule: "weekly"
+    
+  - package_magager: "python"
+    directory: "/python"
+    update_schedule: "weekly"

@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:bionic-20190612
 LABEL maintainer="Jeff Geerling"
 
 ENV pip_upgrade_packages "pip setuptools"
@@ -25,18 +25,20 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 RUN locale-gen en_US.UTF-8
 
 # Install company root certificate
-ADD --chown=1:1 ./${ca_cert_file} ${ca_cert_location}/${ca_cert_file}
+COPY --chown=0:0 ./${ca_cert_file} ${ca_cert_location}/${ca_cert_file}
 RUN chmod 0644 ${ca_cert_location}/${ca_cert_file} \
     && /usr/sbin/update-ca-certificates
 
-# Upgrade Python packages
-RUN pip3 install --cert=${ca_bundle} --upgrade $pip_upgrade_packages
+# Upgrade Python dependencies packages
+copy --chown=0:0 ./python-dependencies/requirements.txt ./python-dependencies/requirements.txt
+RUN pip3 install --cert=${ca_bundle} --upgrade --requirement ./python-dependencies/requirements.txt
 
 # Set pip to use system ca-bundle
 RUN pip3 config set global.cert ${ca_bundle}
 
 # Install Ansible via Pip.
-RUN pip3 install $pip_packages
+copy --chown=0:0 ./python/requirements.txt ./python/requirements.txt
+RUN pip3 install --requirement ./python/requirements.txt
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
