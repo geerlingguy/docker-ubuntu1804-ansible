@@ -1,4 +1,4 @@
-FROM ubuntu:bionic-20190612
+FROM ubuntu:bionic-20190807
 LABEL maintainer="Jeff Geerling"
 
 ENV pip_upgrade_packages "pip setuptools"
