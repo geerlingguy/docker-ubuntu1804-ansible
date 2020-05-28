@@ -23,12 +23,12 @@ RUN locale-gen en_US.UTF-8
 # Cleanup unwanted systemd files
 # See https://hub.docker.com/_/centos/ and https://github.com/ansible/molecule/issues/1104
 RUN find /lib/systemd/system/sysinit.target.wants/* ! -name systemd-tmpfiles-setup.service -delete; \
-rm -f /lib/systemd/system/multi-user.target.wants/*;\
-rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/multi-user.target.wants/*; \
+rm -f /etc/systemd/system/*.wants/*; \
 rm -f /lib/systemd/system/local-fs.target.wants/*; \
 rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
 rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
-rm -f /lib/systemd/system/basic.target.wants/*;\
+rm -f /lib/systemd/system/basic.target.wants/*; \
 rm -f /lib/systemd/system/anaconda.target.wants/*; \
 rm -f /lib/systemd/system/systemd*udev*; \
 rm -f /lib/systemd/system/getty.target
