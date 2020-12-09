@@ -1,6 +1,6 @@
 # Ubuntu 18.04 LTS (Bionic) Ansible Test Image
 
-[![Build Status](https://travis-ci.org/geerlingguy/docker-ubuntu1804-ansible.svg?branch=master)](https://travis-ci.org/geerlingguy/docker-ubuntu1804-ansible) [![Docker Automated build](https://img.shields.io/docker/automated/geerlingguy/docker-ubuntu1804-ansible.svg?maxAge=2592000)](https://hub.docker.com/r/geerlingguy/docker-ubuntu1804-ansible/)
+[![CI](https://github.com/geerlingguy/docker-ubuntu1804-ansible/workflows/Build/badge.svg?branch=master&event=push)](https://github.com/geerlingguy/docker-ubuntu1804-ansible/actions?query=workflow%3ABuild) [![Docker pulls](https://img.shields.io/docker/pulls/geerlingguy/docker-ubuntu1804-ansible)](https://hub.docker.com/r/geerlingguy/docker-ubuntu1804-ansible/)
 
 Ubuntu 18.04 LTS (Bionic) Docker container for Ansible playbook and role testing.
 
