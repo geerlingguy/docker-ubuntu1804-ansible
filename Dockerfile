@@ -25,6 +25,9 @@ RUN apt-get update \
     && apt-get clean
 RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 
+# Upgrade pip to latest version.
+RUN pip3 install --upgrade pip
+
 # Fix potential UTF-8 errors with ansible-test.
 RUN locale-gen en_US.UTF-8
 
