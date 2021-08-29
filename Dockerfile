@@ -3,6 +3,10 @@ LABEL maintainer="Jeff Geerling"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Fix for https://github.com/pypa/pip/issues/10219
+ARG LANG="en_US.UTF-8"
+ARG LC_ALL="en_US.UTF-8"
+
 ENV pip_packages "ansible"
 
 # Install dependencies.
